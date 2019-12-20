@@ -1,0 +1,22 @@
+<ul class="list-unstyled">
+    <% tasks.each do |task| %>
+    <li class="media mb-3">
+        <img class="mr-2 rounded" src="<%=gravatar_url(task.user, { size: 50 }) %>" alt="">
+        <div class="media-body">
+            <div>
+                <%= link_to task.user.name, user_path(task.user) %><span class="text-muted">/登録日： <%= task.created_at %></span>
+            </div>
+            <div>
+                <p>タイトル：<%= task.content %></p>
+                <p>状態：<%= task.status %></p>
+            <div>
+                <% if current_user == task.user %>
+                    <%= link_to "削除", task, method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: "btn btn-danger btn-sm" %>
+                <% end %>    
+            </div>
+            </div>
+        </div>
+    </li>
+    <% end %>
+    <%= paginate tasks %>
+</ul>
