@@ -11,6 +11,9 @@
                 <p>状態：<%= task.status %></p>
             <div>
                 <% if current_user == task.user %>
+                <%= link_to "編集", edit_task_path(task.id), class: "btn btn-primary btn-sm" %>
+                <% end %>   
+                <% if current_user == task.user %>
                     <%= link_to "削除", task, method: :delete, data: { confirm: "本当に削除してよろしいですか?" }, class: "btn btn-danger btn-sm" %>
                 <% end %>    
             </div>
